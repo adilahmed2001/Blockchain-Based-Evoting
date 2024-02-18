@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='startpage.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.13.1/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#pagetop">E-VOTING</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Login</a></li>
+                        <li class = "nav-item"><a class="nav-link js-scroll-trigger" href="{{url_for('display_blocks')}}" target="_blank">Blocks</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div> 
+            </div> 
+        </nav>
+<!-- Masthead -->
+<header class="masthead" id="pagetop" #pagetop>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Blockchain based E-Voting</h1>
+                <h2 class="text-uppercase text-white font-weight-bold">AVS TEAM</h2>
+                <hr class="divider my-4" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 font-weight-bold mb-2" style="font-size: 30px;">Welcome to the E-Voter Application!</p>
+                <p class="text-white-75 font-weight-light mb-5" style="font-size: 20px;">"Every election is determined by the people who show up."</p>
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+            </div>
+        </div>
+    </div>
+</header>
+     <!-- Login-->
+     <div class="container-fluid" id="login" #login>
+        <div class="row no-gutter">
+            <!-- The image half -->
+            <div class="col-md-6 d-none d-md-flex bg-image"></div>
+            <!-- The content half -->
+            <div class="col-md-6 bg-light">
+                <div class="login d-flex align-items-center py-5">
+                    <!-- Demo content-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-xl-7 mx-auto">
+                                {% if error_message %}
+                                <p class="text-center text-danger">{{ error_message }}</p>
+                                {% endif %}
+                                <h4 class="display-5 m-5">Login</h4>
+                                <form method="post" action="{{ url_for('login') }}">
+                                    <div class="group">      
+                                        <input class="inputMaterial bg-light" type="text" name="username" required ngModel>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label class="label1">User Name</label>
+                                      </div>
+                                      <div class="group">      
+                                        <input class="inputMaterial bg-light" type="password" name="password" required ngModel>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label class="label1">Password</label>
+                                      </div>
+                                      <p style="text-align: center; color: #7386D5;"><a  data-toggle="modal" data-target="#enteruser" (click)="setstatus()">Forgot Password?</a></p>
+                                    <button type="submit" class="btn btn-primary1 btn-block text-uppercase mt-5 mb-2 rounded-pill shadow-sm">Log in</button></form><br>
+                                    <p style="text-align: center; color: #7386D5;"><a  data-toggle="modal" data-target="#newuser">New user? Sign up to vote!</a></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+    
+                </div>
+            </div><!-- End -->
+    
+        </div>
+    </div>
+
+<!-- About -->
+<section class="page-section bg-primary1" id="about" #about>
+    <div class="container" style="height: 100%;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-white mt-0">Your Modern Voting Solution!</h2>
+                <hr class="divider light my-4" />
+                <p class="text-white-50 mb-4">Experience the future of voting with our Electronic Voting application! Simplifying the democratic process, our platform utilizes cutting-edge technology to streamline ballot casting and counting. Say goodbye to traditional methods, and embrace a seamless, secure, and efficient way to participate in elections.</p>
+                <a class="btn btn-light1 btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+            </div>
+        </div>
+    </div>
+</section>
+ <!-- Services -->
+<section class="page-section" id="services" #services>
+    <div class="container">
+        <h2 class="text-center mt-0">Our Innovative Features</h2>
+        <hr class="divider my-4" />
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                    <i class="fas fa-4x fa-fingerprint text-primary1 mb-4"></i>
+                    <h3 class="h4 mb-2">Secure</h3>
+                    <p class="text-muted mb-0">Advanced encryption ensures the integrity and confidentiality of your vote.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                    <i class="fas fa-4x fa-check-double text-primary1 mb-4"></i>
+                    <h3 class="h4 mb-2">Verified</h3>
+                    <p class="text-muted mb-0">Implementing robust verification mechanisms to guarantee the authenticity of each vote.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                    <i class="fas fa-4x fa-chart-bar text-primary1 mb-4"></i>
+                    <h3 class="h4 mb-2">Efficient</h3>
+                    <p class="text-muted mb-0">Streamlining the voting process for quick and accurate results.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                    <i class="fas fa-4x fa-users-cog text-primary1 mb-4"></i>
+                    <h3 class="h4 mb-2">User-Friendly</h3>
+                    <p class="text-muted mb-0">An intuitive interface designed to make voting accessible for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact-->
+    <section class="page-section" id="contact" #contact>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mt-0">Let's Get In Touch!</h2>
+                    <hr class="divider my-4" />
+                    <p class="text-muted mb-5">Any Queries or Issues ? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                    <div>+1 123-456-7899</div>
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
+                    ><!-- Make sure to change the email address in BOTH the anchor text and the link target below!--><a class="d-block" href="mailto:">avsteam@uh.edu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="enteruser">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body shadow-lg bg-light">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <p id="headinglabel">Forgot Password </p>
+                <form>
+                            <div class="group" >      
+                                <input class="inputMaterial bg-light" type="text" name="userid" required ngModel style="margin-left: 60px;">
+                                <span class="highlight"></span>
+                                <span class="bar" style="margin-left: 60px;"></span>
+                                <label class="label1" style="margin-left: 60px;">Enter UserId</label>
+                              </div>
+                        <button id="buttonsubmit" type="submit"><span class="material-icons" style="display: inline-flex; vertical-align: top;">check</span>Submit</button>
+                </form> 
+                <form>
+                        <div class="group">      
+                            <input class="inputMaterial bg-light" type="password" name="password" required ngModel style="margin-left: 60px;">
+                            <span class="highlight"></span>
+                            <span class="bar" style="margin-left: 60px;"></span>
+                            <label class="label1" style="margin-left: 60px;">Enter Password</label>
+                        </div>
+                        <div class="group">      
+                            <input class="inputMaterial bg-light" type="password" name="repassword" required ngModel style="margin-left: 60px;">
+                            <span class="highlight"></span>
+                            <span class="bar" style="margin-left: 60px;"></span>
+                            <label class="label1" style="margin-left: 60px;">Renter Password</label>
+                        </div>
+            <button id="buttonsubmit" type="submit">Change Password</button>
+          </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="newuser">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body shadow-lg bg-light">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <p id="headinglabel">Register to vote! </p>
+                <form method="post" action="{{ url_for('register') }}">
+                        <div class="group" >      
+                                <input class="inputMaterial bg-light" type="text" name="userid" required ngModel style="margin-left: 60px;">
+                                <span class="highlight"></span>
+                                <span class="bar" style="margin-left: 60px;"></span>
+                                <label class="label1" style="margin-left: 60px;">Enter Metamask Wallet Address</label>
+                              </div>
+                        <div class="group">      
+                            <input class="inputMaterial bg-light" type="password" name="password" required ngModel style="margin-left: 60px;">
+                            <span class="highlight"></span>
+                            <span class="bar" style="margin-left: 60px;"></span>
+                            <label class="label1" style="margin-left: 60px;">Enter Password</label>
+                        </div>
+                        <div class="group">      
+                            <input class="inputMaterial bg-light" type="phoneno" name="phoneno" required ngModel style="margin-left: 60px;">
+                            <span class="highlight"></span>
+                            <span class="bar" style="margin-left: 60px;"></span>
+                            <label class="label1" style="margin-left: 60px;">Phone Number</label>
+                        </div>
+                        <div class="group">      
+                            <input class="inputMaterial bg-light" type="email" name="email" required ngModel style="margin-left: 60px;">
+                            <span class="highlight"></span>
+                            <span class="bar" style="margin-left: 60px;"></span>
+                            <label class="label1" style="margin-left: 60px;">Email Address</label>
+                        </div>
+            <button id="buttonsubmit" type="submit">Register User</button>
+          </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="bg-light py-5">
+        <div class="container"><div class="small text-center text-muted">Copyright © 2023 - E-VOTING APPLICATION</div></div>
+    </footer>
+</body>
+</html>
